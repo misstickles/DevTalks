@@ -1,3 +1,55 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Building Software Architectures](#building-software-architectures)
+  - [What is Software Architecture?](#what-is-software-architecture)
+    - [Architecture is the highest level concept of the expert developers.](#architecture-is-the-highest-level-concept-of-the-expert-developers)
+    - [Some Architecture Titles](#some-architecture-titles)
+  - [Expectations of an Architect](#expectations-of-an-architect)
+  - [Architectural Thinking](#architectural-thinking)
+  - [Architecture Characteristics](#architecture-characteristics)
+    - [Architecture characteristics could:](#architecture-characteristics-could)
+    - [Main Architecture Characteristics](#main-architecture-characteristics)
+    - [Examples](#examples)
+  - [Component-based Thinking](#component-based-thinking)
+    - [component identification and granularity](#component-identification-and-granularity)
+  - [Software Architecture Patterns (Styles)](#software-architecture-patterns-styles)
+    - [Architectural Overview based on Primary Characteristics](#architectural-overview-based-on-primary-characteristics)
+    - [Monolithic](#monolithic)
+      - [Unstructured Monolith](#unstructured-monolith)
+      - [Layered](#layered)
+      - [Modular Monolith](#modular-monolith)
+      - [Microkernel](#microkernel)
+    - [Distributed](#distributed)
+      - [Event-Driven](#event-driven)
+      - [Pipeline](#pipeline)
+      - [Space-Based](#space-based)
+      - [Service-Oriented (SOA)](#service-oriented-soa)
+      - [Service-Based](#service-based)
+      - [Microservices](#microservices)
+  - [Architecture Decisions](#architecture-decisions)
+    - [Justifying Decisions](#justifying-decisions)
+      - [Groundhog Day Anti-Pattern](#groundhog-day-anti-pattern)
+  - [Documenting and Communicating Architecture Decisions](#documenting-and-communicating-architecture-decisions)
+    - [Email-Driven Architecture](#email-driven-architecture)
+  - [Documenting Software Architectures](#documenting-software-architectures)
+    - [Diagramming Techniques](#diagramming-techniques)
+    - [Archeology](#archeology)
+      - [Documentation Rules](#documentation-rules)
+    - [Architecture Decision Records](#architecture-decision-records)
+      - [The Case for Asciidoc(tor)](#the-case-for-asciidoctor)
+  - [Passive Voice](#passive-voice)
+    - [Passive Voice Myths](#passive-voice-myths)
+    - [Revise!](#revise)
+  - [Presenting Software Architecture](#presenting-software-architecture)
+    - [Presenting Slides in Presentations](#presenting-slides-in-presentations)
+      - [Narrative Arc](#narrative-arc)
+  - [Analysing Architectures](#analysing-architectures)
+    - [Coupling](#coupling)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Building Software Architectures
 
 SDD Deep Dive, 11-13 November 2019, [Neal Ford](nealford.com), [@neal4d](https://www.twitter.com/neal4d)
@@ -7,8 +59,6 @@ This workshop is also presented by [Mark Richards](http://www.wmrichards.com)
 These notes are a merging of the slides provided by Neal, alongside my own notes and my own further references.  
 
 **_Unless credited otherwise, images are from Neal's slide deck from the workshop._**
-
-<a name="software-architecture"></a>
 
 ## What is Software Architecture?
 
@@ -131,6 +181,7 @@ It is good to define a `ubiquitous language`, so that when talking about perform
 * reliability
 * scalability
   * ability to handle gradual increase in users over time
+  * event-driven architecture
 * performance
   * measure and track average response times (cumulative)
   * measure and track maximum response times
@@ -139,6 +190,12 @@ It is good to define a `ubiquitous language`, so that when talking about perform
 * availability
 * elasticity
   * spikes in user activity over time(s)
+  * unpredicted user load
+  * space-based architecture
+* feasibility
+  * n-tiered layered architecture
+* agility
+  * microservics architecture
 * Other 'ilities' can be referenced from a [long list of quality attributes](https://en.wikipedia.org/wiki/List_of_system_quality_attributes)
 
 There are _three_ sources of architecture characteristics:
@@ -176,14 +233,15 @@ three years"
   2. extensibility
   3. openness
   4. standards-based
+* "we have a very tight timeframe and budget for this project" (yes - this is hypothetical :o)
+)
+  1. feasibility
 
 ## Component-based Thinking
 
 ### component identification and granularity
 
 TODO!!
-
-<a name="architecture-patterns"></a>
 
 ## Software Architecture Patterns (Styles)
 
@@ -226,8 +284,6 @@ It is also possible (and almost inevitable) to have hybrid patterns, for example
 |service-oriented|![Status: **N**](https://via.placeholder.com/35/FF0000/FFFFFF.png&text=N)|![Status: **N**](https://via.placeholder.com/35/FF0000/FFFFFF.png&text=N)|![Status: **N**](https://via.placeholder.com/35/FF0000/FFFFFF.png&text=N)|![Status: **N**](https://via.placeholder.com/35/FF0000/FFFFFF.png&text=N)|![Status: **Y**](https://via.placeholder.com/35/008000/FFFFFF.png&text=Y)|![Status: **N**](https://via.placeholder.com/35/FF0000/FFFFFF.png&text=N)|**$$$$**|
 |service-based|![Status: **Y**](https://via.placeholder.com/35/008000/FFFFFF.png&text=Y)|![Status: **Y**](https://via.placeholder.com/35/008000/FFFFFF.png&text=Y)|![Status: **Y**](https://via.placeholder.com/35/008000/FFFFFF.png&text=Y)|![Status: **N**](https://via.placeholder.com/35/FF0000/FFFFFF.png&text=N)|![Status: **Y**](https://via.placeholder.com/35/008000/FFFFFF.png&text=Y)|![Status: **N**](https://via.placeholder.com/35/FF0000/FFFFFF.png&text=N)|**$$**|
 
-<a name="monolithic"></a>
-
 ### Monolithic
 
 * very common, can often end up as a [BBM](https://en.wikipedia.org/wiki/Big_ball_of_mud).
@@ -246,14 +302,10 @@ Jimmy Bogard, [Splitting the Monolith, Lead Dev, 2019](https://www.youtube.com/w
 
 </div>
 
-<a name="unstructured-monolith"></a>
-
 #### Unstructured Monolith
 
 * has a user interface 'layer'
 * any number of classes may (or may not) reference each other to provide context to the UI
-
-<a name="layered"></a>
 
 #### Layered
 
@@ -267,8 +319,6 @@ Jimmy Bogard, [Splitting the Monolith, Lead Dev, 2019](https://www.youtube.com/w
 * requests can pass straight through multiple layers, with little or no logic performed within each layer - known as the `sinkhole anti-pattern` [(the only (good) resource I can find about sinkholes)](https://towardsdatascience.com/software-architecture-patterns-98043af8028)
 * is a solid general-purpose pattern, good starting point for most applications - particularly when not sure of future architecture or requirements.
   
-<a name="modular-monolith"></a>
-
 #### Modular Monolith
 
 **Resource**
@@ -279,8 +329,6 @@ http://www.codingthearchitecture.com/presentations/sa2015-modular-monoliths
   * independently deployable component with high functional cohesion
 * may consist of one/more components (with their own modules), modules, libraries and databases
 * highly coupled and deployed en-mass
-
-<a name="microkernel"></a>
 
 #### Microkernel
 
@@ -295,11 +343,7 @@ http://www.codingthearchitecture.com/presentations/sa2015-modular-monoliths
   * add-ons into Eclipse
   * claims processing system may have modules for each region's requirements
 
-<a name="distributed"></a>
-
 ### Distributed
-
-<a name="event-driven"></a>
 
 #### Event-Driven
 
@@ -338,8 +382,6 @@ Mediator Topology:
   * process engine, sequentially, passes event to event channels - stopping for responses where necessary
     * any interested process will pick up and handle event, until process engine 'completes'
 
-<a name="pipeline"></a>
-
 #### Pipeline
 
 ![Pipeline Architecture](./img/pipelineArchitecture.png)
@@ -361,9 +403,7 @@ Mediator Topology:
 * for example, capture data in multiple formats, process the data, and send to multiple outputs
 ![Pipeline architecture example](./img/pipelineExample.png)
 
-<a name="space-based"></a>
-
-### Space-Based
+#### Space-Based
 
 ![Space-based Architecture](./img/spacebasedArchitecture.png)
 * designed to address and solve scalability and concurrency issues, such as scaling out web server only to have to scale out app server...database server (repeat)
@@ -386,17 +426,11 @@ Mediator Topology:
       * processing grid (manages distributed request processing)
       * deployment manager (manages dynamic processing unit deployment)
 
-<a name="service-oriented"></a>
+#### Service-Oriented (SOA)
 
-### Service-Oriented (SOA)
+#### Service-Based
 
-<a name="service-based"></a>
-
-### Service-Based
-
-<a name="microservices"></a>
-
-### Microservices
+#### Microservices
 
 > A service with a design focus towards the smallest autonomous boundary.
 
@@ -405,8 +439,6 @@ Mediator Topology:
 Jimmy Bogard, [Splitting the Monoloth, Lead Dev, 2019](splitting-the-monolith)
 
 </div>
-
-<a name="architecture-decisions"></a>
 
 ## Architecture Decisions
 
@@ -559,11 +591,7 @@ Helper tool to create ADRs, [ADR Tools](https://github.com/npryce/adr-tools)
 
 * ALL documentation (proposals, emails, anything written down) should be revised
 
-
-.......notes not aligning to slides.....
-
-
-<a name="presenting-software-architecture"></a>
+**.......notes not aligning to slides.....**
 
 ## Presenting Software Architecture
 
@@ -590,8 +618,6 @@ Helper tool to create ADRs, [ADR Tools](https://github.com/npryce/adr-tools)
 **Resources**
 
 Book / site: [presentationpatterns.com](https://presentationpatterns.com)
-
-<a name="analysing-architectures"></a>
 
 ## Analysing Architectures
 
