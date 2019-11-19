@@ -20,6 +20,11 @@ Rational Unified Process definition, working off the IEEE definition.
 [http://martinfowler.com/ieeeSoftware/whoNeedsArchitect.pdf](http://martinfowler.com/ieeeSoftware/whoNeedsArchitect.pdf)
 </div>
 
+**Resources**
+
+(O'Reily video - SOftware Architecture Fundamentals)[https://learning.oreilly.com/videos/software-architecture-fundamentals/9781491998991?autoplay=false]
+
+
 ### Architecture is the highest level concept of the expert developers.
 
 > "In most successful software projects, the expert developers working on that project have a shared understanding of the system design. This shared understanding is called ‘architecture.’ This understanding includes how the system is divided into components and how the components interact through interfaces. These components are usually composed of smaller components, but the architecture only includes the components and interfaces that are understood by all the
@@ -31,6 +36,7 @@ developers."
 </div>
 
 > Architecture is about the important stuff.
+<br />
 > Whatever that is.
 
 <div dir="rlt" align="right">
@@ -39,6 +45,13 @@ Ralph Johnson
 [http://martinfowler.com/ieeeSoftware/whoNeedsArchitect.pdf](http://martinfowler.com/ieeeSoftware/whoNeedsArchitect.pdf)
 </div>
 
+* Stuff includes parts from multiple parts of the system
+  * developers
+  * product owners
+  * operations
+* architecture enocmpasses
+  * architecture decisions
+  * design principles
 * Architects must understand the benefits of everything and also the tradeoffs of everything.  It is their remit to present least-worst options.
 * In the case of an architect feeling [imposter syndrome](https://en.wikipedia.org/wiki/Impostor_syndrome), they should defer to others to get the information and knowledge they need.
 * Decisions can (and should) depend on domain knowledge.
@@ -56,23 +69,27 @@ Ralph Johnson
 | Information Architect | Business Architect |
 | Technical Architect |
 
-### Expectations of an Architect
+## Expectations of an Architect
 
 * define the architecture and design principles to guide technology decisions for the enterprise
-* analyze the current technology environment and recommend solutions for improvement
+* analyze the *current* technology environment and recommend solutions for improvement
 * analyze technology and industry trends and keep current with the latest trends
 * ensure compliance with the architecture
+  * don't be a 'parachute architect'
 * have exposure to multiple and diverse technologies, platforms, and environments
 * have a certain level of business domain expertise
 * possess exceptional interpersonal skills, including teamwork, facilitation, and negotiation
 * understand the political climate of the enterprise and be able to navigate the politics
 
-### Architectural Thinking
+## Architectural Thinking
 
 * Technical breadth vs technical depth
-  * stuff you know (stuff you have to maintain)
+  * stuff you know 
+    * stuff you have to maintain
   * stuff you know you don't know
   * stuff you don't know you don't know
+
+![Technical Breadth vs Technical Depth](./img/breadthVsDepth.png)
 
 <div rel="rtl" align="right">
 
@@ -81,12 +98,20 @@ Ralph Johnson
 </div>
 
 * Architecture is not design - where do you draw the line?
+  * architect vs designer should be a 2-way colaboration - this is where difficulties lie
+  * try to break down the wall
+  * have developer / architect on same team
 
 ## Architecture Characteristics
 
 Architecture charactistics are dependent on current and future business (and system) requirements.  They are known as `non-functional requirements` (but it's better to call them `system qualities`).  These do not cover quality assurances.
 
-Architecture characteristics could:
+* do you know you concurrent user load right now?
+* do you know the requirements for scalability?
+* do you know the requirements for availability?
+* these requirements come from the business
+
+### Architecture characteristics could:
 
 * specify a non-domain design consideration
   * explicit characteristics
@@ -114,7 +139,7 @@ It is good to define a `ubiquitous language`, so that when talking about perform
 * availability
 * elasticity
   * spikes in user activity over time(s)
-* Other 'ilities', can be referenced from a [long list of quality attributes](https://en.wikipedia.org/wiki/List_of_system_quality_attributes)
+* Other 'ilities' can be referenced from a [long list of quality attributes](https://en.wikipedia.org/wiki/List_of_system_quality_attributes)
 
 There are _three_ sources of architecture characteristics:
 
@@ -123,7 +148,9 @@ There are _three_ sources of architecture characteristics:
   * market place demands
 * inherent domain knowledge
 
-For example, some possible business requirements and primary characteristics to consider (transpiling requirements):
+### Examples
+
+Some possible business requirements and possible primary characteristics to consider (transpiling requirements):
 
 * "our business is constantly changing to meet new demands of the marketplace"
   1. extensibility
@@ -209,7 +236,7 @@ It is also possible (and almost inevitable) to have hybrid patterns, for example
 * do not adhere to principles of architecture
   * add excess coupling
   * likely to bypass defined layers
-* tools such as [JFrog's XRay](https://jfrog.com/xray/) and [Empear's X-Ray] (https://codescene.io/docs/guides/technical/xray.html) (aka code-maat) can be used to identify coupling, hotspots, copy-paste, etc...
+* tools such as [JFrog's XRay](https://jfrog.com/xray/) and [Empear's X-Ray](https://codescene.io/docs/guides/technical/xray.html) (aka code-maat) can be used to identify coupling, hotspots, copy-paste, etc...
 
 > Software whose design, infomation model, and interface combine multiple cometeing and interfering domains into one single application and data model.
 
@@ -237,7 +264,7 @@ Jimmy Bogard, [Splitting the Monolith, Lead Dev, 2019](https://www.youtube.com/w
   * persistence
   * database
 * layers provide a separation of concerns and layers of isolation ![Layered architecture](./img/layeredArchitecture.png)
-* requests can pass straight through multiple layers, with little or no logic performed within each layer - known as the sinkhole anti-pattern [(the only (good) resource I can find about sinkholes)](https://towardsdatascience.com/software-architecture-patterns-98043af8028)
+* requests can pass straight through multiple layers, with little or no logic performed within each layer - known as the `sinkhole anti-pattern` [(the only (good) resource I can find about sinkholes)](https://towardsdatascience.com/software-architecture-patterns-98043af8028)
 * is a solid general-purpose pattern, good starting point for most applications - particularly when not sure of future architecture or requirements.
   
 <a name="modular-monolith"></a>
@@ -363,6 +390,11 @@ Mediator Topology:
 
 ### Service-Oriented (SOA)
 
+<a name="service-based"></a>
+
+### Service-Based
+
+<a name="microservices"></a>
 
 ### Microservices
 
