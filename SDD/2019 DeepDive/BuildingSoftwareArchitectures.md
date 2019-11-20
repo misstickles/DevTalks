@@ -236,7 +236,7 @@ Jimmy Bogard, [Splitting the Monolith, Lead Dev, 2019](https://www.youtube.com/w
   * business
   * persistence
   * database
-* layers provide a separation of concerns and layers of isolation ![Layered architecture](img/layeredArchitecture.png)
+* layers provide a separation of concerns and layers of isolation ![Layered architecture](./img/layeredArchitecture.png)
 * requests can pass straight through multiple layers, with little or no logic performed within each layer - known as the sinkhole anti-pattern [(the only (good) resource I can find about sinkholes)](https://towardsdatascience.com/software-architecture-patterns-98043af8028)
 * is a solid general-purpose pattern, good starting point for most applications - particularly when not sure of future architecture or requirements.
   
@@ -258,7 +258,7 @@ http://www.codingthearchitecture.com/presentations/sa2015-modular-monoliths
 #### Microkernel
 
 * has a core system with one/more plug-in components
-![Microkernel Architecture](img/microkernelArchitecture.png)
+![Microkernel Architecture](./img/microkernelArchitecture.png)
 * core system
   * minimal functionality to run system general business rules and logic no custom processing
 * plug-in module
@@ -277,13 +277,13 @@ http://www.codingthearchitecture.com/presentations/sa2015-modular-monoliths
 #### Event-Driven
 
 * Broker Topology
-![Event-driven Broker Topology](img/eventBroker.png)
+![Event-driven Broker Topology](./img/eventBroker.png)
   * provides a kind of choreography for components/processors
   * is a pain to work with but presents less coupling(than mediator) and so is better
   * very scalable
 
 * Mediator Topology
-![Event-driven Mediator Topology](img/eventMediator.png)
+![Event-driven Mediator Topology](./img/eventMediator.png)
   * is a 'low level' orchestrator
   * is coupled by orchestration
   * very scalable
@@ -294,7 +294,7 @@ Event:
 _you moved_
 
 Broker Topology:
-![Handling 'you move' event with broker topology](img/eventBrokerExample.png)
+![Handling 'you move' event with broker topology](./img/eventBrokerExample.png)
   * Customer process receives _change address_ event
     * sends change address to event channel
     * channel sends out to _quote process_ and _claims process_
@@ -305,7 +305,7 @@ Broker Topology:
         * event channel passes to the adjustment process
 
 Mediator Topology:
-![Handling 'you move' event with mediator topology](img/eventMediatorExample.png)
+![Handling 'you move' event with mediator topology](./img/eventMediatorExample.png)
 
 * Process engine receives event
   * process engine, sequentially, passes event to event channels - stopping for responses where necessary
@@ -315,7 +315,7 @@ Mediator Topology:
 
 #### Pipeline
 
-![Pipeline Architecture](img/pipelineArchitecture.png)
+![Pipeline Architecture](./img/pipelineArchitecture.png)
 * pipes
   * for example, pipe enters transformer filter and exits in a pipe
   * uni-directional only
@@ -332,13 +332,13 @@ Mediator Topology:
   * consumer (ending point, inbound only)
 * can relate to functional thinking (map, reduce functions), which is strongly used by (eg) Hadoop and F#
 * for example, capture data in multiple formats, process the data, and send to multiple outputs
-![Pipeline architecture example](img/pipelineExample.png)
+![Pipeline architecture example](./img/pipelineExample.png)
 
 <a name="space-based"></a>
 
 ### Space-Based
 
-![Space-based Architecture](img/spacebasedArchitecture.png)
+![Space-based Architecture](./img/spacebasedArchitecture.png)
 * designed to address and solve scalability and concurrency issues, such as scaling out web server only to have to scale out app server...database server (repeat)
 * an architectural solution to extreme/variable scalability is a better approach the trying to scale out database(s) or retrofitting caching technologies
 * cloud architectures often use space-based architectures
@@ -351,7 +351,7 @@ Mediator Topology:
   * eg, Ticketmaster puts you in a queue if they cannot handle processing transactions in a timly manner
 * is based around
   * one or more processing units (portions of application components, typically containing application modules along with an in-memory data grid and an optional asynchronous persistent store for failover, and a data replication engine to replicate data changes between units)
-  ![Spece-based Architecture Processing Unit](img/spacebasedProcessingUnit.png)
+  ![Spece-based Architecture Processing Unit](./img/spacebasedProcessingUnit.png)
   * virtualised middleware
     * the controller for the architecture - there are _four_ main architecture components managing requests sessions, data replication, distributed request processing, and process-unit deployment 
       * messaging grid (manages input request and session)
@@ -438,12 +438,14 @@ Jimmy Bogard, [Splitting the Monoloth, Lead Dev, 2019](splitting-the-monolith)
   * [case study](http://www.codingthearchitecture.com)
   * a way to help software development teams describe and communicate architecture
   * a good tool for business and developers
-  * captures classes, components, containers, system context
+  * captures System Context, Containers, Components, Code (eg classes)
   * can be a bit more focussed towards monolithic architectures
 * [Structurizr](https://structurizr.com/)
   * a tool to help create software architecture diagrams based upon the C4 model
   * "Visualise, document and explore your software architecture"
   * Structurizr for .NET [documentation / source code on GitHub](https://github.com/structurizr/dotnet)
+* [C4-PlantUml](https://github.com/RicardoNiepel/C4-PlantUML)
+* do not use Visio
 
 **Resources**
 
@@ -454,7 +456,7 @@ Site: [The C4 Software Architecture Model, CodeProject.com](https://www.codeproj
 * not all decisions are made up front
 * good idea to introduce a folder structure allowing for full control of versions
 
-![Documentation Archeology](img/documentationArcheology.png)
+![Documentation Archeology](./img/documentationArcheology.png)
 
 
 #### Documentation Rules
@@ -478,7 +480,7 @@ http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions
 
 </div>
 
-![ADR suggested naming](img/adrNaming.png)
+![ADR suggested naming](./img/adrNaming.png)
 
 * sample outline:
   * Title: short noun phrase
@@ -487,7 +489,7 @@ http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions
   * Status: [proposed | accepted | superseded]
   * Consequences: context after decision is applied
 
-![Example ADR text](img/adrExample.png)
+![Example ADR text](./img/adrExample.png)
 
 **Resources**
 
@@ -548,11 +550,11 @@ Helper tool to create ADRs, [ADR Tools](https://github.com/npryce/adr-tools)
 #### Narrative Arc
 * could look like this:
 
-![Presentation narrative arc](img/narrativeArc.png)
+![Presentation narrative arc](./img/narrativeArc.png)
 
 * a technical narrative?
 
-![Technical narrative arc](img/technicalNarrative.png)
+![Technical narrative arc](./img/technicalNarrative.png)
 
 
 **Resources**
